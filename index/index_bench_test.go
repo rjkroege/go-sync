@@ -11,17 +11,17 @@ var T = []byte{1, 2, 3, 4}
 
 func BenchmarkIndex1024(b *testing.B) {
 	i := ChecksumIndex{}
-	i.weakChecksumLookup = make([]map[uint32]StrongChecksumList, 256)
+	i.WeakChecksumLookup = make([]map[uint32]StrongChecksumList, 256)
 
 	for x := 0; x < 1024; x++ {
 		w := rand.Uint32()
 
-		if i.weakChecksumLookup[w&255] == nil {
-			i.weakChecksumLookup[w&255] = make(map[uint32]StrongChecksumList)
+		if i.WeakChecksumLookup[w&255] == nil {
+			i.WeakChecksumLookup[w&255] = make(map[uint32]StrongChecksumList)
 		}
 
-		i.weakChecksumLookup[w&255][w] = append(
-			i.weakChecksumLookup[w&255][w],
+		i.WeakChecksumLookup[w&255][w] = append(
+			i.WeakChecksumLookup[w&255][w],
 			chunks.ChunkChecksum{},
 		)
 	}
@@ -37,17 +37,17 @@ func BenchmarkIndex1024(b *testing.B) {
 
 func BenchmarkIndex8192(b *testing.B) {
 	i := ChecksumIndex{}
-	i.weakChecksumLookup = make([]map[uint32]StrongChecksumList, 256)
+	i.WeakChecksumLookup = make([]map[uint32]StrongChecksumList, 256)
 
 	for x := 0; x < 8192; x++ {
 		w := rand.Uint32()
 
-		if i.weakChecksumLookup[w&255] == nil {
-			i.weakChecksumLookup[w&255] = make(map[uint32]StrongChecksumList)
+		if i.WeakChecksumLookup[w&255] == nil {
+			i.WeakChecksumLookup[w&255] = make(map[uint32]StrongChecksumList)
 		}
 
-		i.weakChecksumLookup[w&255][w] = append(
-			i.weakChecksumLookup[w&255][w],
+		i.WeakChecksumLookup[w&255][w] = append(
+			i.WeakChecksumLookup[w&255][w],
 			chunks.ChunkChecksum{},
 		)
 	}
